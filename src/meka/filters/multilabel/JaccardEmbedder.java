@@ -111,7 +111,7 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 	@Override
 	public String globalInfo() {
 
-		return "Embeds the instances into R^n such that Euclidean distance is a good estimator of the Jaccard distance between the labels";
+		return "Embeds the instances into R^n such that Euclidean distance is a good estimator of the Jaccard distance between the labels. An ensemble of regression models is used to perform the embedding.";
 	}
 
 	@Override
