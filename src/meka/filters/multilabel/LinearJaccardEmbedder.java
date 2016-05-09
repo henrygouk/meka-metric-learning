@@ -40,7 +40,7 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 
 		if(dimensionString.length() == 0) {
 
-			dimensionString = "16";
+			dimensionString = "0";
 		}
 
 		setDimensions(Integer.parseInt(dimensionString));
@@ -52,7 +52,7 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 
 	public LinearJaccardEmbedder() throws Exception {
 
-		m_Dimensions = 16;
+		m_Dimensions = 0;
 	}
 
 	@Override
@@ -69,6 +69,11 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 		for(int i = 0; i < inputFormat.classIndex(); i++) {
 
 			attributes.add(inputFormat.attribute(i));
+		}
+
+		if(m_Dimensions < 1) {
+
+			m_Dimensions = inputFormat.numAttributes() - inputFormat.classIndex();
 		}
 
 		for(int i = 0; i < m_Dimensions; i++) {
@@ -97,6 +102,11 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 
 		int numFeatures = instances.numAttributes() - instances.classIndex();
 
+		if(m_Dimensions < 1) {
+
+			m_Dimensions = numFeatures;
+		}
+
 		Random rng = new Random();
 		m_Transform = new double[m_Dimensions][numFeatures];
 
@@ -117,7 +127,7 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 
 		double loss = Double.MAX_VALUE;
 
-		for(int q = 0; q < 1000; q++) {
+		for(int q = 0; q < 500; q++) {
 
 			double newLoss = 0;
 
