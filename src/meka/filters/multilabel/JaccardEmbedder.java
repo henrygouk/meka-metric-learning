@@ -183,6 +183,9 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 	private double[][] computeTargets(Instances instances) throws Exception {
 
 		double[][] targets = new double[instances.numInstances()][m_Dimensions];
+		double[][] targetMeans = new double[instances.numInstances()][m_Dimensions];
+		double[][] targetVars = new double[instances.numInstances()][m_Dimensions];
+		double[] numUpdates = new double[instances.numInstances()];
 		double[] iGrad = new double[m_Dimensions];
 		double[] jGrad = new double[m_Dimensions];
 		int[] iLabels = new int[instances.classIndex()];
@@ -193,15 +196,20 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 
 		for(int i = 0; i < targets.length; i++) {
 
+			numUpdates[i] = 0;
+
 			for(int j = 0; j < targets[i].length; j++) {
 
 				targets[i][j] = rng.nextGaussian() * 0.02;
+				targetMeans[i][j] = 0;
+				targetVars[i][j] = 0;
 			}
 		}
 
 		double loss = Double.MAX_VALUE;
+		int numbad = 0;
 
-		//while(true) {
+		//while(numbad < 5) {
 		for(int q = 0; q < 10000; q++) {
 
 			double newLoss = 0;
@@ -231,15 +239,14 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 
 				//Update the loss function
 				double diff;
+				/*newLoss += Math.pow(y - Math.min(yHat, 1), 2);
 
 				if(y < 1.0) {
 
-					newLoss += Math.pow(yHat - y, 2);
 					diff = yHat - y;
 				}
 				else {
 
-					newLoss += Math.min(Math.pow(yHat - y, 2), 1);
 
 					if(yHat < 1.0) {
 
@@ -247,6 +254,37 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 					}
 					else {
 
+						diff = 0;
+					}
+				}*/
+
+				/*newLoss += (1.0 - y) * yHat + y * Math.max(1.0 - yHat, 0.0);
+
+				diff = (1.0 - y);
+
+				if(yHat < 1.0)
+				{
+					diff -= y;
+				}*/
+
+				numUpdates[i] += 1.0;
+				numUpdates[j] += 1.0;
+
+				if(y < 1.0)
+				{
+					diff = (yHat - y) * 2.0;
+					newLoss += Math.pow(y - yHat, 2);
+				}
+				else
+				{
+					newLoss -= Math.min(1.0, yHat);
+
+					if(yHat < 1.0)
+					{
+						diff = -1.0;
+					}
+					else
+					{
 						diff = 0;
 					}
 				}
@@ -257,20 +295,39 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 					iGrad[k] = diff * (targets[i][k] - targets[j][k]);
 					jGrad[k] = diff * (targets[j][k] - targets[i][k]);
 
-					targets[i][k] -= 0.01 * iGrad[k];
-					targets[j][k] -= 0.01 * jGrad[k];
+					targetMeans[i][k] = targetMeans[i][k] * 0.9 + iGrad[k] * 0.1;
+					targetMeans[j][k] = targetMeans[j][k] * 0.9 + jGrad[k] * 0.1;
+
+					targetVars[i][k] = targetVars[i][k] * 0.999 + iGrad[k] * iGrad[k] * 0.001;
+					targetVars[j][k] = targetVars[j][k] * 0.999 + jGrad[k] * jGrad[k] * 0.001;
+
+					double lri = 0.01 * (Math.sqrt(1.0 - Math.pow(0.999, numUpdates[i])) / (1.0 - Math.pow(0.9, numUpdates[i])));
+					double lrj = 0.01 * (Math.sqrt(1.0 - Math.pow(0.999, numUpdates[j])) / (1.0 - Math.pow(0.9, numUpdates[j])));
+
+					targets[i][k] -= lri * targetMeans[i][k] / Math.sqrt(targetVars[i][k] + 1.0e-8);
+					targets[j][k] -= lrj * targetMeans[j][k] / Math.sqrt(targetVars[j][k] + 1.0e-8);
 				}
 			}
 
 			newLoss /= instances.numInstances();
+			System.out.println(newLoss);
 
-			if(loss - newLoss < 1e-4)
+			/*if(loss - newLoss < 1e-4)
 			{
-	//			break;
+				break;
 			}
 			else
 			{
 				loss = newLoss;
+			}*/
+			if(newLoss < loss)
+			{
+				loss = newLoss;
+				numbad = 0;
+			}
+			else
+			{
+				numbad++;
 			}
 		}
 

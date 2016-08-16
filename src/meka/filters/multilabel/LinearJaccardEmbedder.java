@@ -109,12 +109,17 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 
 		Random rng = new Random();
 		m_Transform = new double[m_Dimensions][numFeatures];
+		double[][] means = new double[m_Dimensions][numFeatures];
+		double[][] vars = new double[m_Dimensions][numFeatures];
+		double numUpdates = 0;
 
 		for(int i = 0; i < m_Dimensions; i++) {
 
 			for(int j = 0; j < numFeatures; j++) {
 
-				m_Transform[i][j] = rng.nextGaussian() * 0.02;
+				means[i][j] = 0;
+				vars[i][j] = 0;
+				m_Transform[i][j] = rng.nextGaussian() / (double)(numFeatures + m_Dimensions);
 			}
 		}
 
@@ -126,8 +131,10 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 		int[] jLabels = new int[instances.classIndex()];
 
 		double loss = Double.MAX_VALUE;
+		int numbad = 0;
 
-		for(int q = 0; q < 500; q++) {
+		//for(int q = 0; q < 500; q++) {
+		while(numbad < 5) {
 
 			double newLoss = 0;
 
@@ -159,32 +166,86 @@ public class LinearJaccardEmbedder extends SimpleBatchFilter {
 
 				double diff;
 
-				newLoss += Math.pow(y - Math.min(yHat, 1.0), 2);
+				/*newLoss += Math.pow(y - Math.min(yHat, 1.0), 2);
 
-				if(y < 1.0) {
+				if(yHat < 1.0) {
 
-					diff = Math.min(yHat, 1.0) - y;
+					diff = yHat - y;
 				}
 				else {
-
-					if(yHat < 1.0) {
-
-						diff = yHat - y;
-					}
-					else {
 						
+					diff = 0;
+				}*/
+
+				/* Current best
+				newLoss += y < 1.0 ? Math.pow(y - yHat, 2) : -yHat;
+
+				if(y < 1.0)
+				{
+					diff = (yHat - y) * 2.0;
+				}
+				else
+				{
+					diff = -1.0;
+				}
+				*/
+
+				if(y < 1.0)
+				{
+					diff = (yHat - y) * 2.0;
+					newLoss += Math.pow(y - yHat, 2);
+				}
+				else
+				{
+					newLoss -= Math.min(1.0, yHat);
+
+					if(yHat < 1.0)
+					{
+						diff = -1.0;
+					}
+					else
+					{
 						diff = 0;
 					}
 				}
+
+				/* Jaccard Constrastive Loss
+				newLoss += (1.0 - y) * yHat + y * Math.max(1.0 - yHat, 0.0);
+
+				diff = (1.0 - y);
+
+				if(yHat < 1.0)
+				{
+					diff -= y;
+				}*/
 
 				for(int k = 0; k < m_Dimensions; k++) {
 
 					for(int l = 0; l < numFeatures; l++) {
 
-						m_Transform[k][l] -= 0.00001 * instances.instance(i).value(l + instances.classIndex()) * (iVec[k] - jVec[k]) * diff;
-						m_Transform[k][l] -= 0.00001 * instances.instance(j).value(l + instances.classIndex()) * (jVec[k] - iVec[k]) * diff;
+						double iGrad = diff * (iVec[k] - jVec[k]) * instances.instance(i).value(l + instances.classIndex());
+						double jGrad = diff * (jVec[k] - iVec[k]) * instances.instance(j).value(l + instances.classIndex());
+						double grad = iGrad + jGrad;
+
+						means[k][l] = means[k][l] * 0.9 + grad * 0.1;
+						vars[k][l] = vars[k][l] * 0.999 + grad * grad * 0.001;
+
+						numUpdates += 1.0;
+						double lr = 0.0001 * (Math.sqrt(1.0 - Math.pow(0.999, numUpdates)) / (1.0 - Math.pow(0.9, numUpdates)));
+
+						m_Transform[k][l] -= lr * means[k][l] / Math.sqrt(vars[k][l] + 1.0e-8);
 					}
 				}
+			}
+
+			if(newLoss < loss) {
+
+				loss = newLoss;
+				numbad = 0;
+			}
+			else {
+
+				numbad++;
 			}
 
 			System.out.println(newLoss / instances.numInstances());
