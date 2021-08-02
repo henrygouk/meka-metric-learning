@@ -1,0 +1,50 @@
+== Evaluation Info
+
+Classifier                     meka.classifiers.multilabel.meta.FilteredClassifier
+Options                        [-F, meka.filters.multilabel.JaccardEmbedder -D 16 -W "weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1", -W, meka.classifiers.multilabel.BR, --, -W, weka.classifiers.lazy.IBk, --, -K, 10, -W, 0, -A, weka.core.neighboursearch.LinearNNSearch -A "weka.core.EuclideanDistance -R first-last"]
+Additional Info                
+Dataset                        enron
+Number of labels (L)           53
+Type                           ML
+Threshold                      0.30003561253561245
+Verbosity                      2
+
+
+== Predictive Performance
+
+Number of test instances (N)   
+Accuracy                       0.472
+Jaccard index                  0.472
+Hamming score                  0.941
+Exact match                    0.147
+Jaccard distance               0.528
+Hamming loss                   0.059
+ZeroOne loss                   0.853
+Harmonic score                 0.732
+One error                      0.238
+Rank loss                      0.124
+Avg precision                  0.6  
+Log Loss (lim. L)              0.155
+Log Loss (lim. D)              0.212
+F1 (micro averaged)            0.568
+F1 (macro averaged by example) 0.589
+F1 (macro averaged by label)   0.171
+AUPRC (macro averaged)         0.17 
+AUROC (macro averaged)         0.62 
+Curve Data                     
+Macro Curve Data               
+Micro Curve Data               
+
+
+== Additional Measurements
+
+Number of training instances   1123
+Number of test instances       579
+Label cardinality (train set)  3.386
+Label cardinality (test set)   3.363
+Build Time                     89.716
+Test Time                      6.187
+Total Time                     95.903
+
+
+

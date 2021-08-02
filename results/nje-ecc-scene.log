@@ -1,0 +1,50 @@
+== Evaluation Info
+
+Classifier                     meka.classifiers.multilabel.meta.FilteredClassifier
+Options                        [-F, meka.filters.multilabel.JaccardEmbedder -D 16 -W "weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1", -W, meka.classifiers.multilabel.CC, --, -S, 0, -W, weka.classifiers.lazy.IBk, --, -K, 10, -W, 0, -A, weka.core.neighboursearch.LinearNNSearch -A "weka.core.EuclideanDistance -R first-last"]
+Additional Info                
+Dataset                        scene
+Number of labels (L)           6
+Type                           ML
+Threshold                      1.0E-5
+Verbosity                      2
+
+
+== Predictive Performance
+
+Number of test instances (N)   
+Accuracy                       0.751
+Jaccard index                  0.751
+Hamming score                  0.916
+Exact match                    0.709
+Jaccard distance               0.249
+Hamming loss                   0.084
+ZeroOne loss                   0.291
+Harmonic score                 0.767
+One error                      0.212
+Rank loss                      0.133
+Avg precision                  0.799
+Log Loss (lim. L)              0.151
+Log Loss (lim. D)              0.598
+F1 (micro averaged)            0.759
+F1 (macro averaged by example) 0.765
+F1 (macro averaged by label)   0.767
+AUPRC (macro averaged)         0.649
+AUROC (macro averaged)         0.848
+Curve Data                     
+Macro Curve Data               
+Micro Curve Data               
+
+
+== Additional Measurements
+
+Number of training instances   1211
+Number of test instances       1196
+Label cardinality (train set)  1.062
+Label cardinality (test set)   1.086
+Build Time                     40.484
+Test Time                      2.003
+Total Time                     42.487
+
+
+

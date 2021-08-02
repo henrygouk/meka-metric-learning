@@ -1,0 +1,190 @@
+== Model info
+
+Model                          
+meka.classifiers.multilabel.BR: Node #1
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #2
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #3
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #4
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #5
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #6
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #7
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #8
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #9
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #10
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #11
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #12
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #13
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #14
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #15
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #16
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #17
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #18
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #19
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #20
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #21
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #22
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #23
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #24
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #25
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #26
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+meka.classifiers.multilabel.BR: Node #27
+
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+
+
+== Evaluation Info
+
+Classifier                     meka.classifiers.multilabel.BR
+Options                        [-W, weka.classifiers.lazy.IBk, --, -K, 10, -W, 0, -A, weka.core.neighboursearch.LinearNNSearch -A "weka.core.EuclideanDistance -R first-last"]
+Additional Info                
+Dataset                        genbase
+Number of labels (L)           27
+Type                           ML
+Threshold                      0.2857693686178673
+Verbosity                      2
+
+
+== Predictive Performance
+
+Number of test instances (N)   
+Accuracy                       0.945
+Jaccard index                  0.945
+Hamming score                  0.995
+Exact match                    0.899
+Jaccard distance               0.055
+Hamming loss                   0.005
+ZeroOne loss                   0.101
+Harmonic score                 0.979
+One error                      0.01 
+Rank loss                      0.006
+Avg precision                  0.985
+Log Loss (lim. L)              0.01 
+Log Loss (lim. D)              0.011
+F1 (micro averaged)            0.949
+F1 (macro averaged by example) 0.96 
+F1 (macro averaged by label)   0.669
+AUPRC (macro averaged)         NaN
+AUROC (macro averaged)         NaN
+Curve Data                     
+Macro Curve Data               
+Micro Curve Data               
+
+
+== Additional Measurements
+
+Number of training instances   463
+Number of test instances       199
+Label cardinality (train set)  1.261
+Label cardinality (test set)   1.231
+Build Time                     0.287
+Test Time                      8.516
+Total Time                     8.803
+
+
+

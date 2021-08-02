@@ -1,0 +1,51 @@
+CLASSIFIER No classifier built
+== Evaluation Info
+
+Classifier                     meka.classifiers.multilabel.meta.FilteredClassifier
+Options                        [-F, meka.filters.multilabel.JaccardEmbedder -D 16 -W "weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1", -W, meka.classifiers.multilabel.MULAN, --, -S, MLkNN, -W, weka.classifiers.trees.J48, --, -C, 0.25, -M, 2]
+Additional Info                
+Dataset                        yeast
+Number of labels (L)           14
+Type                           ML
+Threshold                      0.5363929810793534
+Verbosity                      2
+
+
+== Predictive Performance
+
+Number of test instances (N)   
+Accuracy                       0.545
+Jaccard index                  0.545
+Hamming score                  0.791
+Exact match                    0.225
+Jaccard distance               0.455
+Hamming loss                   0.209
+ZeroOne loss                   0.775
+Harmonic score                 0.711
+One error                      0.251
+Rank loss                      0.214
+Avg precision                  0.732
+Log Loss (lim. L)              0.504
+Log Loss (lim. D)              0.925
+F1 (micro averaged)            0.657
+F1 (macro averaged by example) 0.645
+F1 (macro averaged by label)   0.427
+AUPRC (macro averaged)         0.432
+AUROC (macro averaged)         0.631
+Curve Data                     
+Macro Curve Data               
+Micro Curve Data               
+
+
+== Additional Measurements
+
+Number of training instances   1500
+Number of test instances       917
+Label cardinality (train set)  4.228
+Label cardinality (test set)   4.252
+Build Time                     48.363
+Test Time                      1.398
+Total Time                     49.761
+
+
+

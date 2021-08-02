@@ -1,0 +1,51 @@
+CLASSIFIER No classifier built
+== Evaluation Info
+
+Classifier                     meka.classifiers.multilabel.MULAN
+Options                        [-S, MLkNN, -W, weka.classifiers.trees.J48, --, -C, 0.25, -M, 2]
+Additional Info                
+Dataset                        scene
+Number of labels (L)           6
+Type                           ML
+Threshold                      0.37959970269175203
+Verbosity                      2
+
+
+== Predictive Performance
+
+Number of test instances (N)   
+Accuracy                       0.675
+Jaccard index                  0.675
+Hamming score                  0.896
+Exact match                    0.591
+Jaccard distance               0.325
+Hamming loss                   0.104
+ZeroOne loss                   0.409
+Harmonic score                 0.728
+One error                      0.242
+Rank loss                      0.092
+Avg precision                  0.851
+Log Loss (lim. L)              0.207
+Log Loss (lim. D)              0.243
+F1 (micro averaged)            0.712
+F1 (macro averaged by example) 0.703
+F1 (macro averaged by label)   0.721
+AUPRC (macro averaged)         0.756
+AUROC (macro averaged)         0.915
+Curve Data                     
+Macro Curve Data               
+Micro Curve Data               
+
+
+== Additional Measurements
+
+Number of training instances   1211
+Number of test instances       1196
+Label cardinality (train set)  1.062
+Label cardinality (test set)   1.086
+Build Time                     1.808
+Test Time                      1.135
+Total Time                     2.943
+
+
+

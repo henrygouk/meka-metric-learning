@@ -1,0 +1,51 @@
+CLASSIFIER No classifier built
+== Evaluation Info
+
+Classifier                     meka.classifiers.multilabel.MULAN
+Options                        [-S, MLkNN, -W, weka.classifiers.trees.J48, --, -C, 0.25, -M, 2]
+Additional Info                
+Dataset                        medical
+Number of labels (L)           45
+Type                           ML
+Threshold                      0.2120272232484171
+Verbosity                      2
+
+
+== Predictive Performance
+
+Number of test instances (N)   
+Accuracy                       0.547
+Jaccard index                  0.547
+Hamming score                  0.979
+Exact match                    0.411
+Jaccard distance               0.453
+Hamming loss                   0.021
+ZeroOne loss                   0.589
+Harmonic score                 0.66 
+One error                      0.353
+Rank loss                      0.059
+Avg precision                  0.727
+Log Loss (lim. L)              0.056
+Log Loss (lim. D)              0.062
+F1 (micro averaged)            0.619
+F1 (macro averaged by example) 0.595
+F1 (macro averaged by label)   0.2  
+AUPRC (macro averaged)         NaN
+AUROC (macro averaged)         NaN
+Curve Data                     
+Macro Curve Data               
+Micro Curve Data               
+
+
+== Additional Measurements
+
+Number of training instances   333
+Number of test instances       645
+Label cardinality (train set)  1.255
+Label cardinality (test set)   1.24 
+Build Time                     0.412
+Test Time                      0.084
+Total Time                     0.496
+
+
+
