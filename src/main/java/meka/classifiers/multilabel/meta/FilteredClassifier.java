@@ -111,4 +111,8 @@ public class FilteredClassifier extends ProblemTransformationMethod {
 			return m_Classifier.distributionForInstance(filtered);
 		}
 	}
+
+	public static void main(String args[]) throws Exception {
+		ProblemTransformationMethod.evaluation(new FilteredClassifier(), args);
+	}
 }

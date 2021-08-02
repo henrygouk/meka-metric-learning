@@ -310,7 +310,6 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 			}
 
 			newLoss /= instances.numInstances();
-			System.out.println(newLoss);
 
 			/*if(loss - newLoss < 1e-4)
 			{
@@ -353,8 +352,6 @@ public class JaccardEmbedder extends SimpleBatchFilter {
 	}
 
 	private void train(Instances instances) throws Exception {
-
-		System.out.println("Training Jaccard Embedder with " + Integer.toString(instances.numInstances()) + " instances");
 
 		double[][] targets = computeTargets(instances);
 		Instances input = reformatInput(instances);
